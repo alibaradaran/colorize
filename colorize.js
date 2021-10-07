@@ -4,7 +4,7 @@
  * Part Of Genereight App Generator Frontend Collection
  * @version: 1
  * @author: ali.baradaran@gmail.com
- * Copic® is Registered TM ©Too Marker Products Inc.
+ * Copic® is Registered TM to ©Too Marker Products Inc.
  */
 class Gn8Colorize {
     constructor ( data ) {
@@ -2426,7 +2426,11 @@ class Gn8Colorize {
                         }.bind( this ) );
                     }
                     this.createPicker();
-                    this.toolbox.querySelector( ".gn8-colorize-wrap" ).addEventListener( "click", function () {
+                    this.toolbox.addEventListener( "click", function (e) {
+                        e.stopPropagation();
+                    } );
+                    this.toolbox.querySelector( ".gn8-colorize-wrap" ).addEventListener( "click", function (e) {
+                        e.stopPropagation();
                         this.toolbox.remove();
                         this.promiseResolve( {
                             "hex" : this.hex,
