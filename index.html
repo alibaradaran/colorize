@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colorize</title>
+    <script src="colorize.js" ></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="colorizer">
+        <input id="color-input" type="text" value="rgba(255,0,0,1)">
+    </div>
+    <script>
+        document.getElementById( "color-input" ).addEventListener( "focus", function (e) {
+            /* { "id" : null, "container" : "the container for widget(required)", "value" : "rgba(1,1,1,1)(required)" } */
+            var data = {
+                "id" : null,
+                "container" : document.getElementById( "colorizer" ),
+                "value" : document.getElementById( "color-input" ).value
+            }
+            var colorizer = new Gn8Colorize( data );
+            colorizer.init().then( 
+              success => {
+                /* { "hex" : "#ff0000", "rgb" : "rgba(255,0,0,1)", "name" : "red", "theme" : "dark | light" } */
+                document.getElementById( "color-input" ).value = success.rgb;
+                console.log( success );
+              }, error => {
+                console.log( error );
+              } 
+            );
+        } );
+    </script>
+</body>
+</html>
